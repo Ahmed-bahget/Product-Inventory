@@ -22,6 +22,4 @@ Clone the Repository
 git clone 
 cd product-Inventory
 npm install
-# PORT= value
-# MONGO_URI= value
 npm run dev
