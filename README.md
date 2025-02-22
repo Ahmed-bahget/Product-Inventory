@@ -18,8 +18,8 @@ Technologies Used
 
 Installation & Setup
 
-Clone the Repository
-git clone 
-cd product-Inventory
-npm install
-npm run dev
+- Clone the Repository
+- git clone 
+- cd product-Inventory
+- npm install
+- npm run dev
