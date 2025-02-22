@@ -1,4 +1,5 @@
 import { Products } from '../models/products.model.js'
+import mongoose from 'mongoose';
 
 export const createProducts = async (req, res) => {
     try {
@@ -24,7 +25,7 @@ export const createProducts = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(404).json({
+        res.status(500).json({
             message: error.message || "an error occured",
             success: false
         });
@@ -55,6 +56,12 @@ export const allProducts = async (req, res) => {
 export const singleProduct = async (req, res) => {
     try {
         const id = req.params.id;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({
+                message: "Product not found",
+                success: false
+            });
+        }
         const product = await Products.findById(id);
 
         if (!product) {
@@ -80,6 +87,14 @@ export const updateProduct = async (req, res) => {
     try {
         const { name, price, quantity, description } = req.body;
         const id = req.params.id;
+        
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({
+                message: "Product not found",
+                success: false
+            });
+        }
+        
         const updatedProduct = await Products.findByIdAndUpdate(
             id,
             { name, price, quantity, description },
@@ -108,14 +123,20 @@ export const updateProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
     try {
-        const id = req.params.id;
-        const product = await Products.findById(id);
+        const id = req.params.id;        
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({
+                message: "Product not found",
+                success: false
+            });
+        }
 
+        const product = await Products.findById(id);
         if (!product) {
             return res.status(404).json(
                 { 
                     message: "Product not found", 
-                    success:true
+                    success:false
                 }
             );
         }
@@ -125,7 +146,7 @@ export const deleteProduct = async (req, res) => {
         res.status(200).json(
             { 
             message: "Product deleted successfully" ,
-            success:false
+            success:true
             }
         );
 
