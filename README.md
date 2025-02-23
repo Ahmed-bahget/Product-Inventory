@@ -20,8 +20,8 @@ This project is a RESTful API for managing product inventory, built with Node.js
 2. The API will run on http://localhost:5800
 
 Method	Endpoint	Description
-POST	/api/products	Create a new product
-GET	/api/products	Retrieve all products
-GET	/api/products/:id	Get a single product by ID
-PUT	/api/products/:id	Update a product by ID
-DELETE	/api/products/:id	Delete a product by ID
+- POST	/api/products	Create a new product
+- GET	/api/products	Retrieve all products
+- GET	/api/products/:id	Get a single product by ID
+- PUT	/api/products/:id	Update a product by ID
+- DELETE	/api/products/:id	Delete a product by ID
